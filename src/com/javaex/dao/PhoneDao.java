@@ -206,57 +206,47 @@ public class PhoneDao {
 			return count;
 		}
 		
-		public PersonVo personSelect(int personId) {
-			List<PersonVo> personList = new ArrayList<PersonVo>();
-			PersonVo personVo = null;
+		   // 사람 1명정보만 가져올때
+		   public PersonVo getPerson(int personId) {
+		      PersonVo personVo = null;
+		      
+		      getConnection();
 
-			
-			//로딩, connection 얻어오기
-			
-			getConnection();
+		      try {
 
-			try {
-				
-				// 3. SQL문 준비 / 바인딩 / 실행
-				//문자열 만들기
-				String query ="";
-				query += " select  person_id, ";
-				query += "         name, ";
-				query += "         hp, ";
-				query += "         company ";
-				query += " from person ";
-				query += " where person_id = ? ";
-				//System.out.println(query);
-				
-				pstmt.setInt(1, personId);
-				//문자열 쿼리문으로 만들기
-				pstmt = conn.prepareStatement(query);
-				
-				//바인딩 -->생략  ?표 없음
-				
-				rs = pstmt.executeQuery();
-				
-				// 4.결과처리
-				
-				rs.next();
-					int personid = rs.getInt("id");    
-					String personName = rs.getString("name");
-					String personhp = rs.getString("hp");
-					String personcompany = rs.getString("company");
+		         // 3. SQL문 준비 / 바인딩 / 실행 --> 완성된 sql문을 가져와서 작성할것
+		         String query = "";
+		         query += " select  person_id, ";
+		         query += "         name, ";
+		         query += "         hp, ";
+		         query += "         company ";
+		         query += " from person ";
+		         query += " where person_id = ? ";
 
-					PersonVo vo= new PersonVo(personid, personName , personhp, personcompany);
-					personList.add(vo);
-				
-				
-				
+		         pstmt = conn.prepareStatement(query); // 쿼리로 만들기
 
-			} catch (SQLException e) {
-				System.out.println("error:" + e);
-			} 
-			
-			close();
+		         pstmt.setInt(1, personId); // ?(물음표) 중 1번째, 순서중요
+		         
+		         
+		         rs = pstmt.executeQuery();
 
-			return personVo ;
-		}
+		         // 4.결과처리
+		            rs.next();
+		            int id = rs.getInt("person_id");
+		            String name = rs.getString("name");
+		            String hp = rs.getString("hp");
+		            String company = rs.getString("company");
 
+		            personVo = new PersonVo(id, name, hp, company);
+		         
+
+		      } catch (SQLException e) {
+		         System.out.println("error:" + e);
+		      }
+
+		      close();
+
+		      return personVo;
+
+		   }
 	}

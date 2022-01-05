@@ -41,7 +41,7 @@
 			<td><%=personList.get(i).getCompany() %></td>
 		</tr>
 		<tr>
-			<td><a href="./updateForm.jsp?id=<%=personList.get(i).getPersonId()%>&name=<%=personList.get(i).getName()%>&HP=<%=personList.get(i).getHp()%>&company=<%=personList.get(i).getCompany()%>">수정하기</a></td>
+			<td><a href="./updateForm.jsp?id=<%=personList.get(i).getPersonId()%>">수정하기</a></td>
 			<td><a href="./delete.jsp?id=<%=personList.get(i).getPersonId() %>">삭제하기</a></td>
 		</tr>
 	
