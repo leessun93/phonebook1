@@ -206,8 +206,9 @@ public class PhoneDao {
 			return count;
 		}
 		
-		public List<PersonVo> personSelect(int personId) {
+		public PersonVo personSelect(int personId) {
 			List<PersonVo> personList = new ArrayList<PersonVo>();
+			PersonVo personVo = null;
 
 			
 			//로딩, connection 얻어오기
@@ -237,7 +238,7 @@ public class PhoneDao {
 				
 				// 4.결과처리
 				
-				while(rs.next()) {
+				rs.next();
 					int personid = rs.getInt("id");    
 					String personName = rs.getString("name");
 					String personhp = rs.getString("hp");
@@ -245,7 +246,7 @@ public class PhoneDao {
 
 					PersonVo vo= new PersonVo(personid, personName , personhp, personcompany);
 					personList.add(vo);
-				}
+				
 				
 				
 
@@ -255,7 +256,7 @@ public class PhoneDao {
 			
 			close();
 
-			return personList ;
+			return personVo ;
 		}
 
 	}
