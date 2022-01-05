@@ -40,6 +40,10 @@
 			<td>회사(company)</td>
 			<td><%=personList.get(i).getCompany() %></td>
 		</tr>
+		<tr>
+			<td><a href="./updateForm.jsp?id=<%=personList.get(i).getPersonId()%>&name=<%=personList.get(i).getName()%>&HP=<%=personList.get(i).getHp()%>&company=<%=personList.get(i).getCompany()%>">수정하기</a></td>
+			<td><a href="./delete.jsp?id=<%=personList.get(i).getPersonId() %>">삭제하기</a></td>
+		</tr>
 	
 	
 	</table>	
@@ -57,22 +61,6 @@
 	}
 	%>
 	<a href="">전화번호 등록폼</a>
-	<table border ="1">
-		<tr>
-			<td>이름(name)</td>
-			<td>이효리</td>
-		</tr>
-		<tr>
-			<td>핸드폰(HP)</td>
-			<td>010-1111-1111</td>
-		</tr>
-		<tr>
-			<td>회사(company)</td>
-			<td>010-1111-1111</td>
-		</tr>
 	
-	
-	</table>
-		
 </body>
 </html>
